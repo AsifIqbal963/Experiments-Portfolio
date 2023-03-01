@@ -1,0 +1,28 @@
+int GREEN = 4;
+int RED = 2;
+int DELAY_GREEN = 3000;
+int DELAY_RED = 3000;
+ 
+void setup()
+  {
+  pinMode(GREEN, OUTPUT);
+  pinMode(RED, OUTPUT);
+  }
+void loop()
+  {
+  green_light();
+  delay(DELAY_GREEN);
+  red_light();
+  delay(DELAY_RED);
+  }
+ void red_light()
+  {
+  digitalWrite(GREEN, LOW);
+  digitalWrite(RED, HIGH);
+  }
+  void green_light()
+  {
+  digitalWrite(GREEN, HIGH);
+  digitalWrite(RED, LOW);
+  }
+  
