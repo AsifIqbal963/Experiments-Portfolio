@@ -1,0 +1,18 @@
+#include <Servo.h> 
+Servo myservo; 
+#define servoPin 8 //This will output the data
+
+int angle = 0; 
+void setup() {  
+  myservo.attach(servoPin); 
+} 
+
+void loop() { // This tells the servo to go to a particular angle such as 180
+  myservo.write(180); 
+  delay(1000); 
+  myservo.write(180); 
+  delay(1000); 
+  myservo.write(90); 
+  delay(1000); 
+  delay(100); 
+} 
