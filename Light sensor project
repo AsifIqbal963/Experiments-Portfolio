@@ -1,0 +1,17 @@
+const int LIGHT_SENSOR = A5; // Light sensor will be connected on A5
+const int LED_PIN = 6; // This connects to the led
+const int ANALOG_THRESHOLD = 500;
+
+int analogValue;
+void setup() {
+  pinMode(LED_PIN, OUTPUT); // Set to output
+}
+
+void loop() {
+  analogValue = analogRead(LIGHT_SENSOR); // This will read the input on analog pin
+
+  if(analogValue < ANALOG_THRESHOLD)
+    digitalWrite(LED_PIN, HIGH); // This will turn on the LED
+  else
+    digitalWrite(LED_PIN, LOW);  // This will turn off the LED
+}
