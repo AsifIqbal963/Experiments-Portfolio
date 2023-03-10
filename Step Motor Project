@@ -1,0 +1,20 @@
+#include <Stepper.h>
+
+const int stepsPerRevolution = 400;  // 400 steps per revolution
+Stepper myStepper(stepsPerRevolution, 8, 9, 10, 11); // Ports used on ardunio
+
+void setup() {
+  myStepper.setSpeed(90); // 90 Speed
+  Serial.begin(9600);
+}
+
+void loop() { //Code loops
+  Serial.println("clockwise");
+  myStepper.step(stepsPerRevolution);
+  delay(600); //Delay 600
+
+  Serial.println("counterclockwise"); //Used to turn in other direction
+  myStepper.step(-stepsPerRevolution);
+  delay(600); //Delay 600
+}
+
