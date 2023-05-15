@@ -1,0 +1,43 @@
+#include <Adafruit_NeoPixel.h>
+
+#define NEOPIXEL_PIN 6  // This is the NeoPixel data pin
+#define PIR_PIN 2     // This is the PIR motion sensor pin
+#define SPEAKER_PIN 3  // This is the Speaker pin
+#define NEOPIXEL_COUNT 21  // Number of NeoPixels in the ring
+
+Adafruit_NeoPixel neopixels = Adafruit_NeoPixel(NEOPIXEL_COUNT, NEOPIXEL_PIN, NEO_GRB + NEO_KHZ800);
+
+
+void setup() {
+  pinMode(PIR_PIN, INPUT); //Input
+  pinMode(SPEAKER_PIN, OUTPUT); // Output
+  neopixels.begin();
+  neopixels.show();  // Initialize NeoPixels to off state
+}
+
+void loop() { //Loops if motion is detected again 
+  if (digitalRead(PIR_PIN) == HIGH) {
+    motionDetected();
+  }
+}
+
+void motionDetected() { //Function to flash light and play sound
+  flashRedLight();
+  playAlertSound();
+}
+
+void flashRedLight() {
+  for (int i = 0; i < 4; i++) {  // Flash the light four times
+    neopixels.fill(neopixels.Color(255,0,0));  // Set NeoPixels to red
+    neopixels.show();
+    delay(500);
+    neopixels.clear();  // This turns off the NeoPixel
+    neopixels.show();
+    delay(100);
+  }
+}
+
+void playAlertSound() {
+  tone(SPEAKER_PIN, 500, 500);  // This plays a 500Hz tone 
+  delay(500);  // Wait for the tone to finish playing
+}
