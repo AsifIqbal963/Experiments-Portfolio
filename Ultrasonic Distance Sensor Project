@@ -1,1 +1,30 @@
+const int trigPin = 2;   // Trig pin of HC-SR04 connected to Arduino digital pin 2 
+const int echoPin = 3;   // Echo pin of HC-SR04 connected to Arduino digital pin 3 
+const int ledPin = 4;    // LED pin connected to Arduino digital pin 4 
+const int distanceThreshold = 100;  // Distance threshold in centimeters 
+
+void setup() { 
+  pinMode(trigPin, OUTPUT); 
+  pinMode(echoPin, INPUT); 
+  pinMode(ledPin, OUTPUT); 
+  Serial.begin(9600); 
+} 
+void loop() {   // Trigger the ultrasonic sensor 
+  digitalWrite(trigPin, LOW); 
+  delayMicroseconds(2); 
+  digitalWrite(trigPin, HIGH); 
+  delayMicroseconds(10); 
+  digitalWrite(trigPin, LOW); 
+
+  long duration = pulseIn(echoPin, HIGH);  // Measure the pulse duration of the echo pin 
+  int distance = duration / 58; 
+
+  if (distance < distanceThreshold) {  // Turn on the LED 
+    digitalWrite(ledPin, HIGH); 
+  } else {  // Turn off the LED 
+    digitalWrite(ledPin, LOW); 
+  } 
+
+  delay(500);  // Delay between measurements 
+} 
 
